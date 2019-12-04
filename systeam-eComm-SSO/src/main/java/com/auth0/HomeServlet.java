@@ -14,7 +14,6 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         final String accessToken = (String) SessionUtils.get(req, "accessToken");
         final String idToken = (String) SessionUtils.get(req, "idToken");
-        System.out.println(req.getHeaderNames());
         if (accessToken != null) {
             req.setAttribute("userId", accessToken);
         } else if (idToken != null) {

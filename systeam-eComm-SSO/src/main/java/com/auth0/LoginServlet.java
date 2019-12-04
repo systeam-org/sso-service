@@ -33,7 +33,6 @@ public class LoginServlet extends HttpServlet {
             redirectUri += ":" + req.getServerPort();
         }
         redirectUri += "/callback";
-//        redirectUri = "https://systeambiz.com/";
 
         String authorizeUrl = authenticationController.buildAuthorizeUrl(req, redirectUri)
                 .build();

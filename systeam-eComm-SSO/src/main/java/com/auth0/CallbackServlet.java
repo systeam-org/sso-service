@@ -19,7 +19,8 @@ public class CallbackServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        redirectOnSuccess = "/portal/home";
+//        redirectOnSuccess = "/portal/home";
+        redirectOnSuccess = "https://systeambiz.com/";
         redirectOnFail = "/login";
 
         try {
@@ -44,7 +45,7 @@ public class CallbackServlet extends HttpServlet {
             Tokens tokens = authenticationController.handle(req);
             SessionUtils.set(req, "accessToken", tokens.getAccessToken());
             SessionUtils.set(req, "idToken", tokens.getIdToken());
-            res.sendRedirect(redirectOnSuccess);
+            res.sendRedirect(redirectOnSuccess + "?accessToken=" + tokens.getAccessToken() + "&idToken=" + tokens.getIdToken());
         } catch (IdentityVerificationException e) {
             e.printStackTrace();
             res.sendRedirect(redirectOnFail);
